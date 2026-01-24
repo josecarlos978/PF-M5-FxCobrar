@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Inicio - Gestión de Cuentas</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d46a0",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101722",
+                        "sidebar-light": "#e3f2fd",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d131b] dark:text-white">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- TopNavBar -->
+        <header
+            class="fixed top-0 z-50 flex h-16 w-full items-center justify-between border-b border-solid border-primary/10 bg-primary px-10 py-3 text-white shadow-md">
+            <div class="flex items-center gap-4">
+                <div class="size-8 flex items-center justify-center bg-white/20 rounded-lg">
+                    <span class="material-symbols-outlined text-white">account_balance_wallet</span>
+                </div>
+                <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Gestión de Cuentas</h2>
+            </div>
+            <div class="flex flex-1 justify-end gap-4">
+                <button
+                    class="flex items-center justify-center rounded-xl h-10 bg-white/10 hover:bg-white/20 text-white gap-2 text-sm font-bold px-4 transition-colors">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <div class="flex items-center gap-3 pl-4 border-l border-white/20">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-xs font-medium opacity-80">Administrador</p>
+                        <p class="text-sm font-bold">Juan Pérez</p>
+                    </div>
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white/30"
+                        data-alt="User profile avatar of a professional man"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDcueT-GxA0DwAnhUayMAE8MgpNJCUx9o3Jc_crPY7kdJbVEMtGrK8vX65OudA49k9WAe_AikA2Tfv9dOwqynPhY9tKeen9sFCTPZNZuG-Nv5mxgmiqhOAp1ArbBfLHayRfM8Pn7WqDzyRyC5K8C3NNdRd_dRehRtWgxTn-gjjBbO8nVEy9lYFdAzFanJ7qyobDWJ5XUgI5LI6Utm1CRN655csgzGGlyaZKULb9YzUXZd2XyvDsleKYEp0HqNA_UEB-WKHRxFJasu0");'>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="flex flex-1 pt-16">
+            <!-- SideNavBar -->
+            <aside
+                class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 flex-col justify-between bg-sidebar-light dark:bg-slate-900 p-4 border-r border-primary/5 hidden md:flex">
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-3 px-3 py-4">
+                        <span class="material-symbols-outlined text-primary">menu</span>
+                        <h1
+                            class="text-primary dark:text-blue-300 text-base font-bold leading-normal uppercase tracking-wider">
+                            Menú Principal</h1>
+                    </div>
+                    <nav class="flex flex-col gap-2">
+                        <a class="flex items-center gap-3 px-3 py-3 rounded-xl bg-primary text-white shadow-sm"
+                            href="index.html">
+                            <span class="material-symbols-outlined">home</span>
+                            <p class="text-sm font-semibold">Inicio</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-primary/10 text-primary dark:text-blue-300 transition-all"
+                            href="clientes.html">
+                            <span class="material-symbols-outlined">group</span>
+                            <p class="text-sm font-medium">Clientes</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-primary/10 text-primary dark:text-blue-300 transition-all"
+                            href="facturas.html">
+                            <span class="material-symbols-outlined">description</span>
+                            <p class="text-sm font-medium">Facturas</p>
+                        </a>
+                        <a class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-primary/10 text-primary dark:text-blue-300 transition-all"
+                            href="dashboard.html">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            <p class="text-sm font-medium">Dashboard</p>
+                        </a>
+                    </nav>
+                </div>
+                <div class="p-3 bg-primary/5 rounded-xl">
+                    <p class="text-[10px] text-primary/60 dark:text-blue-400 font-bold uppercase mb-2">Soporte</p>
+                    <div class="flex items-center gap-2 text-primary dark:text-blue-300 text-xs">
+                        <span class="material-symbols-outlined text-sm">help</span>
+                        <span>Centro de ayuda</span>
+                    </div>
+                </div>
+            </aside>
+            <!-- Main Content Area -->
+            <main class="flex-1 md:ml-64 p-8">
+                <div class="max-w-5xl mx-auto space-y-8">
+                    <!-- Headline Section -->
+                    <section>
+                        <h1
+                            class="text-[#0d131b] dark:text-white tracking-light text-[32px] font-bold leading-tight pb-2">
+                            Bienvenido al Sistema de Gestión de Clientes y Facturas por Cobrar
+                        </h1>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg font-normal">
+                            Administre sus relaciones comerciales y flujos de efectivo de manera eficiente desde un solo
+                            lugar.
+                        </p>
+                    </section>
+                    <!-- Feature Grid -->
+                    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div
+                            class="flex flex-col bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                            <div
+                                class="size-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary">
+                                <span class="material-symbols-outlined text-3xl">group</span>
+                            </div>
+                            <h3 class="text-[#0d131b] dark:text-white text-xl font-bold mb-2">Clientes</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">
+                                Gestione su base de datos de clientes, contactos e información fiscal de forma
+                                centralizada.
+                            </p>
+                            <button
+                                class="w-full bg-primary text-white py-2.5 rounded-lg font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                <span>Ir a Clientes</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                            <div
+                                class="size-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary">
+                                <span class="material-symbols-outlined text-3xl">receipt_long</span>
+                            </div>
+                            <h3 class="text-[#0d131b] dark:text-white text-xl font-bold mb-2">Facturas</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">
+                                Cree, envíe y realice seguimiento detallado de sus facturas y estados de pago.
+                            </p>
+                            <button
+                                class="w-full bg-primary text-white py-2.5 rounded-lg font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                <span>Gestionar Facturas</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                        <div
+                            class="flex flex-col bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                            <div
+                                class="size-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 text-primary">
+                                <span class="material-symbols-outlined text-3xl">insights</span>
+                            </div>
+                            <h3 class="text-[#0d131b] dark:text-white text-xl font-bold mb-2">Dashboard</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 flex-grow">
+                                Visualice métricas clave, gráficos de tendencia y análisis financiero de su negocio.
+                            </p>
+                            <button
+                                class="w-full bg-primary text-white py-2.5 rounded-lg font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                <span>Ver Reportes</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </section>
+                    <!-- Summary KPI Section -->
+                    <section class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-lg font-bold text-slate-800 dark:text-slate-200">Resumen de Cuenta</h2>
+                            <span class="text-xs font-medium text-slate-500 uppercase tracking-widest">Datos
+                                actualizados hoy</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Total Clientes -->
+                            <div
+                                class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                                <p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase mb-1">Total
+                                    Clientes</p>
+                                <div class="flex items-end gap-2">
+                                    <span class="text-2xl font-bold">124</span>
+                                    <span class="text-green-500 text-xs font-bold mb-1 flex items-center">
+                                        <span class="material-symbols-outlined text-xs">trending_up</span> 4%
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- Facturas Pendientes -->
+                            <div
+                                class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-l-[#ffca28] border border-slate-100 dark:border-slate-700 shadow-sm">
+                                <p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase mb-1">Facturas
+                                    Pendientes</p>
+                                <div class="flex items-end gap-2">
+                                    <span class="text-2xl font-bold text-[#ffca28]">18</span>
+                                    <span class="text-slate-400 text-xs mb-1">por cobrar</span>
+                                </div>
+                            </div>
+                            <!-- Facturas Pagadas -->
+                            <div
+                                class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-l-[#4caf50] border border-slate-100 dark:border-slate-700 shadow-sm">
+                                <p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase mb-1">Facturas
+                                    Pagadas</p>
+                                <div class="flex items-end gap-2">
+                                    <span class="text-2xl font-bold text-[#4caf50]">82</span>
+                                    <span class="text-slate-400 text-xs mb-1">este mes</span>
+                                </div>
+                            </div>
+                            <!-- Monto Pendiente -->
+                            <div
+                                class="bg-white dark:bg-slate-800 p-5 rounded-xl border-l-4 border-l-[#ff9800] border border-slate-100 dark:border-slate-700 shadow-sm">
+                                <p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase mb-1">Monto
+                                    Pendiente</p>
+                                <div class="flex items-end gap-2">
+                                    <span class="text-2xl font-bold text-[#ff9800]">$45,200</span>
+                                    <span class="text-slate-400 text-xs mb-1">USD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Recent Activity Placeholder -->
+                    <section
+                        class="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
+                        <div class="p-6 border-b border-slate-100 dark:border-slate-700">
+                            <h2 class="text-lg font-bold">Actividad Reciente</h2>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 py-2">
+                                    <div
+                                        class="size-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                        <span class="material-symbols-outlined">check_circle</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-bold">Pago recibido de "Tech Solutions S.A."</p>
+                                        <p class="text-xs text-slate-500">Factura #F-2024-001 • Hace 2 horas</p>
+                                    </div>
+                                    <div class="text-sm font-bold text-green-600">+$1,500.00</div>
+                                </div>
+                                <div class="flex items-center gap-4 py-2">
+                                    <div
+                                        class="size-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                        <span class="material-symbols-outlined">add_circle</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-bold">Nueva factura creada para "Distribuidora Global"
+                                        </p>
+                                        <p class="text-xs text-slate-500">Factura #F-2024-005 • Hace 5 horas</p>
+                                    </div>
+                                    <div class="text-sm font-bold">$2,340.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

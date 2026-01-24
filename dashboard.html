@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard de Indicadores - Gestión Pro</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d46a0",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101722",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .chart-bar-mock {
+            background: linear-gradient(to top, #0d46a0 0%, #0d46a0 60%, #e7ecf3 60%, #e7ecf3 100%);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 flex items-center justify-between bg-primary px-6 py-3 shadow-md text-white">
+        <div class="flex items-center gap-4">
+            <div class="size-8 bg-white/20 rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined text-white">analytics</span>
+            </div>
+            <h2 class="text-xl font-bold leading-tight tracking-tight">Dashboard de Indicadores</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex items-center bg-white/10 rounded-xl px-3 py-1.5 gap-2 border border-white/20">
+                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                <span class="text-sm font-medium">01 Ene, 2024 - 31 Ene, 2024</span>
+            </div>
+            <button
+                class="flex items-center justify-center rounded-xl h-10 px-4 bg-white text-primary text-sm font-bold hover:bg-slate-100 transition-colors">
+                <span class="truncate">Rango de fechas</span>
+            </button>
+            <div class="h-8 w-px bg-white/20"></div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-semibold opacity-80 uppercase">Administrador</p>
+                    <p class="text-sm font-bold">Juan Pérez</p>
+                </div>
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white/30"
+                    data-alt="User profile avatar placeholder"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDAfL1J2C0ZPsGmhB1yOFbBKIn-mt8cA3A7OVGkABGnmhKvB_4bN_WiDGu8vuhitcq0WgWOzY3Sv7v5dP7FPTA7h2M_vCq0IqVaQhg-eJIB0axHB_zRHm95W0zRfGESsr67bp1ITFOmrOJyr9bavf5TLYCeGcLx45TQPIqoRGDMbQewpEpRXqvY50W4h_7pIc94rBQsA2YkTQmdCxsuvTfhv_P68adX6nQ6XapJy4RBtaFlXu3GtVwYSlWaCVyXws1Utyc2hbZtNwM");'>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Side Navigation -->
+        <aside
+            class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col hidden lg:flex">
+            <div class="p-6 flex flex-col gap-8">
+                <div>
+                    <h1 class="text-primary text-lg font-bold">Gestión Pro</h1>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">
+                        Administración de cobros</p>
+                </div>
+                <nav class="flex flex-col gap-2">
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-bold"
+                        href="index.html">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="text-sm">Inicio</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium"
+                        href="clientes.html">
+                        <span class="material-symbols-outlined">group</span>
+                        <span class="text-sm">Clientes</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium"
+                        href="facturas.html">
+                        <span class="material-symbols-outlined">receipt_long</span>
+                        <span class="text-sm">Facturas</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium"
+                        href="index.html">
+                        <span class="material-symbols-outlined">bar_chart</span>
+                        <span class="text-sm">Reportes</span>
+                    </a>
+                    <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium"
+                        href="index.html">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span class="text-sm">Configuración</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="mt-auto p-6 border-t border-slate-200 dark:border-slate-800">
+                <button class="flex items-center gap-3 text-red-600 font-medium text-sm">
+                    <span class="material-symbols-outlined">logout</span>
+                    Cerrar Sesión
+                </button>
+            </div>
+        </aside>
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-y-auto p-6 lg:p-10 space-y-8">
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button
+                    class="group flex items-center justify-between p-6 bg-primary rounded-xl text-white shadow-lg hover:bg-primary/90 transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="size-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-2xl">person_add</span>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-bold">Registrar Cliente</h3>
+                            <p class="text-sm text-white/80">Añadir nueva cuenta al sistema</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+                <button
+                    class="group flex items-center justify-between p-6 bg-white dark:bg-slate-800 border-2 border-primary rounded-xl text-primary dark:text-white shadow-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="size-12 bg-primary/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <span
+                                class="material-symbols-outlined text-2xl text-primary dark:text-primary-light">post_add</span>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="text-lg font-bold">Registrar Factura</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Emitir nuevo comprobante</p>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+            <!-- Stats Grid -->
+            <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                <div
+                    class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Clientes</p>
+                        <span class="material-symbols-outlined text-slate-400">groups</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight">124</p>
+                    <div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
+                        <span class="material-symbols-outlined text-xs">trending_up</span>
+                        <span>+5% este mes</span>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Facturas Totales</p>
+                        <span class="material-symbols-outlined text-slate-400">description</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight">850</p>
+                    <div class="flex items-center gap-1 text-red-600 text-sm font-bold">
+                        <span class="material-symbols-outlined text-xs">trending_down</span>
+                        <span>-2% este mes</span>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm border-l-4 border-l-red-500">
+                    <div class="flex justify-between items-start">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Monto Pendiente</p>
+                        <span class="material-symbols-outlined text-red-500">pending_actions</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight">$15,200.00</p>
+                    <p class="text-slate-400 text-xs font-medium uppercase tracking-tighter">Por cobrar</p>
+                </div>
+                <div
+                    class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm border-l-4 border-l-green-500">
+                    <div class="flex justify-between items-start">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Monto Cobrado</p>
+                        <span class="material-symbols-outlined text-green-500">check_circle</span>
+                    </div>
+                    <p class="text-3xl font-bold leading-tight">$42,800.00</p>
+                    <div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
+                        <span class="material-symbols-outlined text-xs">trending_up</span>
+                        <span>+8% vs mes anterior</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Alerts Section -->
+            <section>
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="material-symbols-outlined text-red-600">notifications_active</span>
+                    <h2 class="text-xl font-bold leading-tight tracking-tight">Alertas Automáticas</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Overdue Alert -->
+                    <div
+                        class="flex items-stretch justify-between gap-4 rounded-xl bg-red-50 dark:bg-red-950/20 p-5 border border-red-100 dark:border-red-900/30">
+                        <div class="flex flex-col gap-3">
+                            <div>
+                                <span
+                                    class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Crítico</span>
+                                <p class="text-slate-900 dark:text-slate-100 text-lg font-bold mt-1">Factura #098 - 5
+                                    días de retraso</p>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">Cliente: Constructora ABC. Pago
+                                    fuera de plazo.</p>
+                            </div>
+                            <button
+                                class="flex items-center justify-center rounded-lg h-9 px-4 bg-red-600 text-white text-sm font-bold w-fit hover:bg-red-700">
+                                Gestionar Cobro
+                            </button>
+                        </div>
+                        <div
+                            class="hidden sm:block size-16 flex-shrink-0 bg-red-100 dark:bg-red-900/40 rounded-full flex items-center justify-center text-red-600">
+                            <span class="material-symbols-outlined text-3xl">error</span>
+                        </div>
+                    </div>
+                    <!-- Upcoming Alert -->
+                    <div
+                        class="flex items-stretch justify-between gap-4 rounded-xl bg-orange-50 dark:bg-orange-950/20 p-5 border border-orange-100 dark:border-orange-900/30">
+                        <div class="flex flex-col gap-3">
+                            <div>
+                                <span
+                                    class="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Próximo</span>
+                                <p class="text-slate-900 dark:text-slate-100 text-lg font-bold mt-1">Factura #102 -
+                                    Vence mañana</p>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm">Cliente: Inversiones Globales S.A.
+                                </p>
+                            </div>
+                            <button
+                                class="flex items-center justify-center rounded-lg h-9 px-4 bg-orange-500 text-white text-sm font-bold w-fit hover:bg-orange-600">
+                                Enviar Recordatorio
+                            </button>
+                        </div>
+                        <div
+                            class="hidden sm:block size-16 flex-shrink-0 bg-orange-100 dark:bg-orange-900/40 rounded-full flex items-center justify-center text-orange-500">
+                            <span class="material-symbols-outlined text-3xl">warning</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Charts Row -->
+            <section class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <!-- Bar Chart Mockup -->
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-lg">Estado de Facturas</h3>
+                        <span class="material-symbols-outlined text-slate-400">more_horiz</span>
+                    </div>
+                    <div class="flex items-end justify-around h-48 gap-4 px-4">
+                        <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
+                            <div class="w-full bg-primary rounded-t-lg" style="height: 85%;"></div>
+                            <span class="text-xs font-medium text-slate-500">Pagadas</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
+                            <div class="w-full bg-orange-400 rounded-t-lg" style="height: 45%;"></div>
+                            <span class="text-xs font-medium text-slate-500">Pend.</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
+                            <div class="w-full bg-red-400 rounded-t-lg" style="height: 15%;"></div>
+                            <span class="text-xs font-medium text-slate-500">Venc.</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
+                            <div class="w-full bg-slate-300 dark:bg-slate-600 rounded-t-lg" style="height: 10%;"></div>
+                            <span class="text-xs font-medium text-slate-500">Anul.</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Line Chart Mockup -->
+                <div
+                    class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-bold text-lg">Recaudación Mensual</h3>
+                        <div class="flex gap-2">
+                            <div class="flex items-center gap-1">
+                                <span class="size-2 rounded-full bg-primary"></span>
+                                <span class="text-[10px] text-slate-400">Recaudado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative h-48 w-full border-b border-l border-slate-100 dark:border-slate-700">
+                        <!-- SVG Line Mockup -->
+                        <svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+                            <path d="M 0 80 Q 20 70, 40 40 T 80 20 L 100 30" fill="none" stroke="#0d46a0"
+                                stroke-width="2"></path>
+                            <circle cx="0" cy="80" fill="#0d46a0" r="1.5"></circle>
+                            <circle cx="40" cy="40" fill="#0d46a0" r="1.5"></circle>
+                            <circle cx="80" cy="20" fill="#0d46a0" r="1.5"></circle>
+                            <circle cx="100" cy="30" fill="#0d46a0" r="1.5"></circle>
+                            <!-- Grid lines -->
+                            <line class="text-slate-100 dark:text-slate-700" stroke="currentColor" stroke-dasharray="2"
+                                x1="0" x2="100" y1="20" y2="20"></line>
+                            <line class="text-slate-100 dark:text-slate-700" stroke="currentColor" stroke-dasharray="2"
+                                x1="0" x2="100" y1="40" y2="40"></line>
+                            <line class="text-slate-100 dark:text-slate-700" stroke="currentColor" stroke-dasharray="2"
+                                x1="0" x2="100" y1="60" y2="60"></line>
+                        </svg>
+                        <div
+                            class="absolute -bottom-6 flex justify-between w-full px-1 text-[10px] text-slate-400 font-medium">
+                            <span>Oct</span>
+                            <span>Nov</span>
+                            <span>Dic</span>
+                            <span>Ene</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Recent Invoices Table Partial -->
+            <section
+                class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+                    <h3 class="font-bold text-lg">Últimas Facturas</h3>
+                    <button class="text-primary text-sm font-bold hover:underline">Ver todas</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr
+                                class="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">
+                                <th class="px-6 py-4">ID</th>
+                                <th class="px-6 py-4">Cliente</th>
+                                <th class="px-6 py-4">Fecha</th>
+                                <th class="px-6 py-4">Monto</th>
+                                <th class="px-6 py-4">Estado</th>
+                                <th class="px-6 py-4">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors">
+                                <td class="px-6 py-4 text-sm font-medium">#1245</td>
+                                <td class="px-6 py-4 text-sm">Tech Solutions Inc.</td>
+                                <td class="px-6 py-4 text-sm text-slate-500">12 Ene 2024</td>
+                                <td class="px-6 py-4 text-sm font-bold">$1,200.00</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2 py-1 rounded-full text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400">PAGADA</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button
+                                        class="material-symbols-outlined text-slate-400 hover:text-primary">visibility</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors">
+                                <td class="px-6 py-4 text-sm font-medium">#1244</td>
+                                <td class="px-6 py-4 text-sm">Restaurante El Faro</td>
+                                <td class="px-6 py-4 text-sm text-slate-500">11 Ene 2024</td>
+                                <td class="px-6 py-4 text-sm font-bold">$450.00</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2 py-1 rounded-full text-[10px] font-bold bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400">PENDIENTE</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button
+                                        class="material-symbols-outlined text-slate-400 hover:text-primary">visibility</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors">
+                                <td class="px-6 py-4 text-sm font-medium">#1243</td>
+                                <td class="px-6 py-4 text-sm">Constructora ABC</td>
+                                <td class="px-6 py-4 text-sm text-slate-500">05 Ene 2024</td>
+                                <td class="px-6 py-4 text-sm font-bold">$3,800.00</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="px-2 py-1 rounded-full text-[10px] font-bold bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400">VENCIDA</span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button
+                                        class="material-symbols-outlined text-slate-400 hover:text-primary">visibility</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
