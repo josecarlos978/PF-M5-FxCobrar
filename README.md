@@ -14,7 +14,7 @@
 |:--|:--|:--|:--|
 | **HU001** | Registro de cliente | Registrar datos de cliente y contactos | ✅ Completada |
 
-### ⏳ **Pendientes de Implementar**
+### ⏳ ***Pendientes de Implementar***
 
 | Código | Historia | Descripción | Estado |
 |:--|:--|:--|:--|
