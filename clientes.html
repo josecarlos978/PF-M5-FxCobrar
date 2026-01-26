@@ -1,311 +1,228 @@
 <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes | Gestión de Cuentas</title>
 
-<html class="light" lang="es">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Gestión de Clientes - Dashboard</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap"
-        rel="stylesheet" />
+    <!-- Material Symbols -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0d46a0",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101722",
-                    },
-                    fontFamily: {
-                        "display": ["Inter"]
-                    },
-                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
-</head>
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;700"
+    />
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-[#0d131b] dark:text-white min-h-screen flex flex-col">
-    <!-- TopNavBar -->
-    <header
-        class="fixed top-0 z-50 w-full h-16 bg-primary dark:bg-primary/90 flex items-center justify-between px-6 border-b border-primary/20 text-white shadow-md">
-        <div class="flex items-center gap-4">
-            <div class="size-8 bg-white/20 rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-white">receipt_long</span>
-            </div>
-            <h1 class="text-xl font-black tracking-tight">Gestión de Clientes</h1>
-        </div>
-        <div class="flex items-center gap-4">
-            <button class="p-2 hover:bg-white/10 rounded-full transition-colors">
-                <span class="material-symbols-outlined">notifications</span>
-            </button>
-            <button class="p-2 hover:bg-white/10 rounded-full transition-colors">
-                <span class="material-symbols-outlined">settings</span>
-            </button>
-            <div class="h-8 w-[1px] bg-white/20 mx-2"></div>
-            <div class="flex items-center gap-3">
-                <div class="text-right">
-                    <p class="text-sm font-bold leading-none">Admin User</p>
-                    <p class="text-xs text-white/70">Administrador</p>
-                </div>
-                <div class="size-10 rounded-full bg-cover bg-center border-2 border-white/20"
-                    data-alt="User profile picture in a circular frame"
-                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdPMJWdbPZy7ntJhG7KqYIqVyzoKPgYLdEfEGTMhJ0bxXcQkwWi_BYeZlPxJoiSkyCUfa56TJaJ6cJ_NBr0wJf8CJf3eczM4hbkJt4vl_KKGzNA2ZcJtqT3QuCaw4qai6EOlSK5-K5bhQu5JFr_-1FPHSs0mDIlDMRMHr9jzDk2isbe1wbYycN4YXg1xfTbKfxK24MiZbt7N21W7P4m8eerluidAc4SVwaLODkA9Aty7BXsB-UDtwc0in_45tRMY7NciBlfowL_Zg');">
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="flex flex-1 pt-16 h-full">
-        <!-- SideNavBar -->
-        <aside
-            class="fixed left-0 w-64 h-[calc(100vh-64px)] bg-[#eef4ff] dark:bg-background-dark/50 border-r border-[#d0dcf5] dark:border-gray-800 p-4 flex flex-col justify-between">
-            <div class="flex flex-col gap-6">
+    <style>
+      :root {
+        --primary: #0f4aa8;
+        --sidebar: #eaf3ff;
+      }
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .bg-sidebar-light {
+        background-color: var(--sidebar);
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-50">
+    <!-- Header dinámico -->
+    <header id="appHeader"></header>
+
+    <!-- Layout -->
+    <div class="flex flex-1 pt-16">
+      <!-- Sidebar dinámico -->
+      <aside id="appSidebar"></aside>
+
+      <!-- Contenido -->
+      <main class="flex-1 md:ml-64 p-8">
+        <div class="max-w-6xl mx-auto space-y-8">
+          <!-- Título -->
+          <section class="space-y-2">
+            <h1 class="text-3xl font-black text-slate-900">
+              Administración de Clientes
+            </h1>
+            <p class="text-slate-600">
+              Cree y gestione la base de datos de sus clientes comerciales.
+            </p>
+          </section>
+
+          <!-- Grid principal -->
+          <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- ================= FORMULARIO ================= -->
+            <div
+              class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-6"
+            >
+              <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">person_add</span>
+                Registro de Cliente
+              </h2>
+
+              <form id="clientForm" class="space-y-4">
+                <!-- RUC -->
                 <div>
-                    <h2 class="text-xs font-bold text-primary/60 uppercase tracking-widest px-3 mb-4">Menú Principal
-                    </h2>
-                    <nav class="flex flex-col gap-1">
-                        <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-primary/10 rounded-lg transition-all"
-                            href="dashboard.html">
-                            <span class="material-symbols-outlined">dashboard</span>
-                            <span class="font-medium text-sm">Dashboard</span>
-                        </a>
-                        <a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-lg shadow-sm"
-                            href="clientes.html">
-                            <span class="material-symbols-outlined">group</span>
-                            <span class="font-medium text-sm">Clientes</span>
-                        </a>
-                        <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-primary/10 rounded-lg transition-all"
-                            href="facturas.html">
-                            <span class="material-symbols-outlined">description</span>
-                            <span class="font-medium text-sm">Facturas</span>
-                        </a>
-                        <a class="flex items-center gap-3 px-4 py-3 text-gray-600 dark:text-gray-400 hover:bg-primary/10 rounded-lg transition-all"
-                            href="index.html">
-                            <span class="material-symbols-outlined">bar_chart</span>
-                            <span class="font-medium text-sm">Reportes</span>
-                        </a>
-                    </nav>
+                  <label class="text-sm font-bold text-slate-700">RUC / DNI</label>
+                  <input
+                    id="rucInput"
+                    type="text"
+                    placeholder="Ej: 20123456789"
+                    class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                  />
                 </div>
-            </div>
-            <div class="p-3 bg-primary/5 rounded-xl">
-                <p class="text-[10px] text-primary/50 font-bold uppercase mb-1">Estado del Sistema</p>
-                <div class="flex items-center gap-2">
-                    <div class="size-2 bg-green-500 rounded-full"></div>
-                    <span class="text-xs font-medium text-gray-600 dark:text-gray-400">Servidores Online</span>
-                </div>
-            </div>
-        </aside>
-        <!-- Main Content Area -->
-        <main class="ml-64 flex-1 p-8 bg-background-light dark:bg-background-dark overflow-y-auto">
-            <!-- PageHeading -->
-            <div class="mb-8">
-                <h2 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">Administración de Clientes
-                </h2>
-                <p class="text-gray-500 dark:text-gray-400 text-base mt-1">Cree y gestione la base de datos de sus
-                    clientes comerciales.</p>
-            </div>
-            <div class="grid grid-cols-12 gap-8">
-                <!-- Section 1: Registro de Cliente Form -->
-                <div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
-                    <div
-                        class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
-                        <div
-                            class="bg-gray-50 dark:bg-gray-900 px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary">person_add</span>
-                                Registro de Cliente
-                            </h3>
-                        </div>
-                        <form class="p-6 flex flex-col gap-4" id="clientForm">
-                            <!-- Datos Generales -->
-                            <div class="flex flex-col gap-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">RUC
-                                        / DNI</label>
-                                    <input
-                                        id="rucInput"
-                                        class="w-full h-11 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all"
-                                        placeholder="Ej: 20123456789" type="text" required />
-                                </div>
-                                <div>
-                                    <label
-                                        class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Razón
-                                        Social / Nombre</label>
-                                    <input
-                                        id="razonSocialInput"
-                                        class="w-full h-11 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all"
-                                        placeholder="Nombre de la empresa" type="text" required />
-                                </div>
-                                <div>
-                                    <label
-                                        class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Dirección
-                                        Fiscal</label>
-                                    <input
-                                        id="direccionInput"
-                                        class="w-full h-11 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg px-4 focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all"
-                                        placeholder="Calle, Distrito, Ciudad" type="text" required />
-                                </div>
-                            </div>
-                            <hr class="my-2 border-gray-100 dark:border-gray-700" />
-                            <!-- Contact Section 1 -->
-                            <div class="bg-primary/5 dark:bg-primary/10 p-4 rounded-lg">
-                                <p
-                                    class="text-xs font-bold text-primary dark:text-primary uppercase mb-3 flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-[16px]">contact_page</span> Contacto
-                                    Principal
-                                </p>
-                                <div class="flex flex-col gap-3">
-                                    <input
-                                        id="contacto1NombreInput"
-                                        class="w-full h-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-3 text-sm"
-                                        placeholder="Nombre Completo" type="text" required />
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <input
-                                            id="contacto1CelularInput"
-                                            class="w-full h-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-3 text-sm"
-                                            placeholder="Celular" type="text" required />
-                                        <input
-                                            id="contacto1EmailInput"
-                                            class="w-full h-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-3 text-sm"
-                                            placeholder="Email" type="email" required />
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Contact Section 2 -->
-                            <div class="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg">
-                                <p class="text-xs font-bold text-gray-500 uppercase mb-3 flex items-center gap-1">
-                                    <span class="material-symbols-outlined text-[16px]">contact_page</span> Contacto
-                                    Secundario (Opcional)
-                                </p>
-                                <div class="flex flex-col gap-3">
-                                    <input
-                                        id="contacto2NombreInput"
-                                        class="w-full h-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-3 text-sm"
-                                        placeholder="Nombre Completo" type="text" />
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <input
-                                            id="contacto2CelularInput"
-                                            class="w-full h-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-3 text-sm"
-                                            placeholder="Celular" type="text" />
-                                        <input
-                                            id="contacto2EmailInput"
-                                            class="w-full h-10 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-3 text-sm"
-                                            placeholder="Email" type="email" />
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                                id="submitBtn"
-                                class="mt-4 w-full h-12 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2"
-                                type="submit">
-                                <span class="material-symbols-outlined">save</span>
-                                Guardar cliente
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <!-- Section 2: Gestión de Clientes Data Table -->
-                <div class="col-span-12 lg:col-span-8">
-                    <div
-                        class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden flex flex-col h-full">
-                        <!-- Table Header & Search -->
-                        <div
-                            class="p-6 border-b border-gray-200 dark:border-gray-700 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-white">Listado de Clientes</h3>
-                            <div class="relative w-full md:w-80">
-                                <span
-                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-                                <input
-                                    id="searchInput"
-                                    class="w-full pl-10 pr-4 h-10 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg text-sm focus:ring-primary/20 focus:border-primary"
-                                    placeholder="Buscar por RUC o Razón Social..." type="text" />
-                            </div>
-                        </div>
-                        <!-- Table Content -->
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-gray-50 dark:bg-gray-900/50">
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            RUC / DNI</th>
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            Razón Social</th>
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            Dirección</th>
-                                        <th class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
-                                            Contactos</th>
-                                        <th
-                                            class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-center">
-                                            Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-100 dark:divide-gray-700" id="clientsTableBody">
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-900/40 transition-colors">
-                                        <td class="px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
-                                            20601234567</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">Corporación
-                                            Industrial SAC</td>
-                                        <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">Av. Las
-                                            Industrias 450, Ate</td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex flex-col">
-                                                <span class="text-xs font-bold text-gray-800 dark:text-gray-200">Juan
-                                                    Pérez</span>
-                                                <span class="text-[11px] text-gray-500">987 654 321</span>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="flex justify-center gap-2">
-                                                <button
-                                                    class="p-1.5 text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                                                    title="Editar">
-                                                    <span class="material-symbols-outlined text-[20px]">edit</span>
-                                                </button>
-                                                <button
-                                                    class="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                                    title="Eliminar">
-                                                    <span class="material-symbols-outlined text-[20px]">delete</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Table Footer / Pagination -->
-                        <div
-                            class="mt-auto p-6 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                            <span class="text-xs font-medium text-gray-500" id="clientCountSpan">Mostrando 4 de 12 clientes</span>
-                            <div class="flex items-center gap-2" id="paginationButtons">
-                                <button
-                                    class="px-3 py-1 text-xs font-bold text-gray-500 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 transition-colors disabled:opacity-50">Anterior</button>
-                                <button
-                                    class="px-3 py-1 text-xs font-bold bg-primary text-white rounded shadow-sm">1</button>
-                                <button
-                                    class="px-3 py-1 text-xs font-bold text-gray-500 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 transition-colors">2</button>
-                                <button
-                                    class="px-3 py-1 text-xs font-bold text-gray-500 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 transition-colors">3</button>
-                                <button
-                                    class="px-3 py-1 text-xs font-bold text-gray-500 border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-50 transition-colors">Siguiente</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script type="module" src="js/clientes.js"></script>
-</body>
 
+                <!-- Razón social -->
+                <div>
+                  <label class="text-sm font-bold text-slate-700">
+                    Razón Social / Nombre
+                  </label>
+                  <input
+                    id="razonSocialInput"
+                    type="text"
+                    placeholder="Nombre del cliente"
+                    class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                  />
+                </div>
+
+                <!-- Dirección -->
+                <div>
+                  <label class="text-sm font-bold text-slate-700">
+                    Dirección Fiscal
+                  </label>
+                  <input
+                    id="direccionInput"
+                    type="text"
+                    placeholder="Calle, distrito, ciudad"
+                    class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                  />
+                </div>
+
+                <!-- Contacto principal -->
+                <div class="pt-4 border-t border-slate-100 space-y-3">
+                  <p class="text-sm font-bold text-primary flex items-center gap-2">
+                    <span class="material-symbols-outlined text-base">contact_phone</span>
+                    Contacto Principal
+                  </p>
+
+                  <input
+                    id="contacto1NombreInput"
+                    type="text"
+                    placeholder="Nombre completo"
+                    class="w-full h-11 rounded-xl border border-slate-200 px-4"
+                  />
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <input
+                      id="contacto1CelularInput"
+                      type="text"
+                      placeholder="Celular"
+                      class="h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                    <input
+                      id="contacto1EmailInput"
+                      type="email"
+                      placeholder="Email"
+                      class="h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                  </div>
+                </div>
+
+                <!-- Contacto secundario -->
+                <div class="pt-4 border-t border-slate-100 space-y-3">
+                  <p class="text-sm font-bold text-slate-500 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-base">person</span>
+                    Contacto Secundario (Opcional)
+                  </p>
+
+                  <input
+                    id="contacto2NombreInput"
+                    type="text"
+                    placeholder="Nombre completo"
+                    class="w-full h-11 rounded-xl border border-slate-200 px-4"
+                  />
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <input
+                      id="contacto2CelularInput"
+                      type="text"
+                      placeholder="Celular"
+                      class="h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                    <input
+                      id="contacto2EmailInput"
+                      type="email"
+                      placeholder="Email"
+                      class="h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                  </div>
+                </div>
+
+                <!-- Botón -->
+                <button
+                  id="submitBtn"
+                  type="submit"
+                  class="w-full h-12 rounded-xl bg-primary text-white font-bold flex items-center justify-center gap-2 hover:opacity-90 transition"
+                >
+                  <span class="material-symbols-outlined">save</span>
+                  Guardar cliente
+                </button>
+              </form>
+            </div>
+
+            <!-- ================= LISTADO ================= -->
+            <div
+              class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-6"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h2 class="text-lg font-extrabold text-slate-900">
+                  Listado de Clientes
+                </h2>
+
+                <input
+                  id="searchInput"
+                  type="text"
+                  placeholder="Buscar por RUC o Razón Social..."
+                  class="h-10 w-64 rounded-xl border border-slate-200 px-4 text-sm"
+                />
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead class="border-b border-slate-100 text-slate-500">
+                    <tr>
+                      <th class="py-3 text-left">RUC / DNI</th>
+                      <th class="py-3 text-left">Razón Social</th>
+                      <th class="py-3 text-left">Dirección</th>
+                      <th class="py-3 text-left">Contacto</th>
+                      <th class="py-3 text-center">Acciones</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="clientsTableBody"></tbody>
+                </table>
+              </div>
+
+              <!-- Footer tabla -->
+              <div class="flex items-center justify-between pt-4">
+                <span id="clientCountSpan" class="text-xs text-slate-500">
+                  Mostrando 0 clientes
+                </span>
+
+                <div id="paginationButtons" class="flex gap-2"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- JS -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/clientes.js"></script>
+  </body>
 </html>

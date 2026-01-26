@@ -1,454 +1,294 @@
 <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facturas | Gestión de Cuentas</title>
 
-<html class="light" lang="es">
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Registro y Seguimiento de Facturas | FacturaFlow</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Material Symbols -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#0d46a0",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101722",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
-                },
-            },
-        }
-    </script>
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;700"
+    />
+
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        select {
-            --select-button-svg: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724px%27 height=%2724px%27 fill=%27rgb(76,106,154)%27 viewBox=%270 0 256 256%27%3e%3cpath d=%27M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z%27%3e%3c/path%3e%3c/svg%3e');
-        }
+      :root {
+        --primary: #0f4aa8;
+      }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
     </style>
-</head>
+  </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display">
-    <!-- TopNavBar -->
-    <header
-        class="fixed top-0 z-50 w-full flex items-center justify-between border-b border-solid border-[#e7ecf3] dark:border-[#2d3a4f] bg-primary px-10 py-3 text-white">
-        <div class="flex items-center gap-8">
-            <div class="flex items-center gap-4">
-                <div class="size-6 text-white">
-                    <span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
-                </div>
-                <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">FacturaFlow</h2>
-            </div>
-            <div class="flex items-center gap-9 ml-4">
-                <a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="dashboard.html">Dashboard</a>
-                <a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="clientes.html">Clientes</a>
-                <a class="text-white text-sm font-bold border-b-2 border-white pb-1" href="facturas.html">Facturas</a>
-                <a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="index.html">Reportes</a>
-            </div>
-        </div>
-        <div class="flex flex-1 justify-end gap-6 items-center">
-            <label class="flex flex-col min-w-40 !h-10 max-w-64">
-                <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
-                    <div
-                        class="text-white/60 flex bg-white/10 items-center justify-center pl-4 rounded-l-xl border-none">
-                        <span class="material-symbols-outlined text-xl">search</span>
-                    </div>
+  <body class="bg-slate-50">
+    <!-- Header dinámico -->
+    <header id="appHeader"></header>
+
+    <!-- Layout -->
+    <div class="flex flex-1 pt-16">
+      <!-- Sidebar dinámico -->
+      <aside id="appSidebar"></aside>
+
+      <!-- Contenido -->
+      <main class="flex-1 md:ml-64 p-8">
+        <div class="max-w-6xl mx-auto space-y-8">
+          <!-- Título -->
+          <section class="space-y-2">
+            <h1 class="text-3xl font-black text-slate-900">
+              Registro y Seguimiento de Facturas
+            </h1>
+            <p class="text-slate-600">
+              Controle su facturación y gestione sus cuentas por cobrar de manera eficiente.
+            </p>
+          </section>
+
+          <!-- Form factura + Seguimiento -->
+          <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Registro de Factura -->
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-6">
+              <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">receipt_long</span>
+                Registro de Factura
+              </h2>
+
+              <form id="invoiceForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Cliente</label>
+                    <select
+                      id="invoiceClientSelect"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4 bg-white"
+                    >
+                      <option value="">Seleccionar cliente...</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">RUC (Autocompletado)</label>
                     <input
-                        class="form-input flex w-full min-w-0 flex-1 rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-white/10 focus:border-none h-full placeholder:text-white/60 px-4 rounded-l-none pl-2 text-sm font-normal"
-                        placeholder="Buscar facturas..." value="" />
+                      id="invoiceRucAuto"
+                      type="text"
+                      placeholder="Se completa al elegir cliente"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4 bg-slate-50"
+                      disabled
+                    />
+                  </div>
                 </div>
-            </label>
-            <div class="flex gap-2">
-                <button
-                    class="flex items-center justify-center rounded-xl h-10 w-10 bg-white/10 hover:bg-white/20 text-white transition-colors">
-                    <span class="material-symbols-outlined">notifications</span>
-                </button>
-                <button
-                    class="flex items-center justify-center rounded-xl h-10 w-10 bg-white/10 hover:bg-white/20 text-white transition-colors">
-                    <span class="material-symbols-outlined">account_circle</span>
-                </button>
-            </div>
-            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border-2 border-white/20"
-                data-alt="Avatar de usuario administrador"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBO70abpoR22fHAcXLAJMkWcKUjOXo4Z5LcLlaUtEZ773QDM8AQaZO8v2dQ65HQwA6MVC2NYVFPLFgqLfDURoll4qUIudD7O9koL_5k8wIXXHfGiK5iurffd4r-YgCnM7DJBTqlU-kBEDoVxrbyT-hwgLcfuzoyyudis8-siTi3tTIDDyM6ylQUxkYj99bI7UnkIMjYfD_hf4cL4RYGUTFtkhtEKXOL7ans9fl4xCzj0ymGs0okIygzJse95rOidU7ve0o0QrAuIKU");'>
-            </div>
-        </div>
-    </header>
-    <div class="flex min-h-screen pt-[64px]">
-        <!-- SideNavBar -->
-        <aside
-            class="fixed left-0 w-64 h-[calc(100vh-64px)] overflow-y-auto bg-white dark:bg-[#1a2433] border-r border-[#e7ecf3] dark:border-[#2d3a4f] p-4 flex flex-col justify-between">
-            <div class="flex flex-col gap-6">
-                <div class="flex flex-col gap-1 px-3">
-                    <h3 class="text-xs font-bold text-[#4c6a9a] dark:text-gray-400 uppercase tracking-wider">Módulos de
-                        Negocio</h3>
-                </div>
-                <nav class="flex flex-col gap-2">
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-background-light dark:hover:bg-white/5 transition-colors text-[#4c6a9a] dark:text-gray-300"
-                        href="clientes.html">
-                        <span class="material-symbols-outlined">group</span>
-                        <p class="text-sm font-medium leading-normal">Clientes</p>
-                    </a>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-400 transition-colors"
-                        href="facturas.html">
-                        <span class="material-symbols-outlined"
-                            style="font-variation-settings: 'FILL' 1;">description</span>
-                        <p class="text-sm font-bold leading-normal">Gestión de Facturas</p>
-                    </a>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-background-light dark:hover:bg-white/5 transition-colors text-[#4c6a9a] dark:text-gray-300"
-                        href="index.html">
-                        <span class="material-symbols-outlined">analytics</span>
-                        <p class="text-sm font-medium leading-normal">Reportes Financieros</p>
-                    </a>
-                    <a class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-background-light dark:hover:bg-white/5 transition-colors text-[#4c6a9a] dark:text-gray-300"
-                        href="index.html">
-                        <span class="material-symbols-outlined">settings</span>
-                        <p class="text-sm font-medium leading-normal">Configuración</p>
-                    </a>
-                </nav>
-            </div>
-            <div class="flex flex-col gap-4 mt-8">
-                <div class="bg-primary/5 dark:bg-blue-900/10 p-4 rounded-xl">
-                    <p class="text-xs font-semibold text-primary dark:text-blue-400 mb-1">Espacio de Trabajo</p>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">Corporativo S.A.C</p>
-                </div>
-                <button
-                    class="flex w-full items-center justify-center rounded-xl h-12 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
-                    <span class="material-symbols-outlined mr-2">add</span>
-                    <span class="truncate">Nueva Factura</span>
-                </button>
-            </div>
-        </aside>
-        <!-- Main Content Area -->
-        <main class="ml-64 flex-1 p-8 bg-background-light dark:bg-background-dark overflow-x-hidden">
-            <!-- Page Heading -->
-            <div class="mb-8">
-                <h1 class="text-[#0d131b] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
-                    Registro y Seguimiento de Facturas</h1>
-                <p class="text-[#4c6a9a] dark:text-gray-400 text-lg font-normal leading-normal">Controle su facturación
-                    y gestione sus cuentas por cobrar de manera eficiente.</p>
-            </div>
-            <div class="grid grid-cols-12 gap-8">
-                <!-- Left Column: Form and Table -->
-                <div class="col-span-12 lg:col-span-8 space-y-8">
-                    <!-- Section 1: Registro de Factura -->
-                    <section
-                        class="bg-white dark:bg-[#1a2433] rounded-xl border border-[#e7ecf3] dark:border-[#2d3a4f] overflow-hidden shadow-sm">
-                        <div class="border-b border-[#e7ecf3] dark:border-[#2d3a4f] px-6 py-4 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">app_registration</span>
-                            <h2 class="text-[#0d131b] dark:text-white text-xl font-bold">Registro de Factura</h2>
-                        </div>
-                        <div class="p-6">
-                            <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-[#0d131b] dark:text-white text-sm font-bold">Cliente</label>
-                                    <select
-                                        class="form-select flex w-full rounded-xl text-[#0d131b] dark:text-white focus:ring-primary border border-[#cfd8e7] dark:border-[#2d3a4f] bg-white dark:bg-[#0d131b] h-12 p-[10px] text-sm">
-                                        <option value="">Seleccionar cliente...</option>
-                                        <option value="1">Distribuidora Alianza S.A.</option>
-                                        <option value="2">Tecnologías del Sur</option>
-                                        <option value="3">Importaciones Globales</option>
-                                    </select>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-[#0d131b] dark:text-white text-sm font-bold">RUC
-                                        (Autocompletado)</label>
-                                    <input
-                                        class="form-input flex w-full rounded-xl text-[#4c6a9a] dark:text-gray-400 bg-gray-50 dark:bg-[#121b28] border border-[#cfd8e7] dark:border-[#2d3a4f] h-12 px-4 text-sm"
-                                        readonly="" type="text" value="20601234567" />
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-[#0d131b] dark:text-white text-sm font-bold">Número de
-                                        Factura</label>
-                                    <input
-                                        class="form-input flex w-full rounded-xl text-[#0d131b] dark:text-white border border-[#cfd8e7] dark:border-[#2d3a4f] dark:bg-[#0d131b] h-12 px-4 text-sm"
-                                        placeholder="F001-000456" type="text" />
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-[#0d131b] dark:text-white text-sm font-bold">Monto Total</label>
-                                    <div class="relative">
-                                        <span
-                                            class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">S/</span>
-                                        <input
-                                            class="form-input flex w-full rounded-xl text-[#0d131b] dark:text-white border border-[#cfd8e7] dark:border-[#2d3a4f] dark:bg-[#0d131b] h-12 pl-10 pr-4 text-sm"
-                                            placeholder="0.00" type="number" />
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-[#0d131b] dark:text-white text-sm font-bold">Fecha de
-                                        Emisión</label>
-                                    <input
-                                        class="form-input flex w-full rounded-xl text-[#0d131b] dark:text-white border border-[#cfd8e7] dark:border-[#2d3a4f] dark:bg-[#0d131b] h-12 px-4 text-sm"
-                                        type="date" />
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <label class="text-[#0d131b] dark:text-white text-sm font-bold">Fecha de
-                                        Vencimiento</label>
-                                    <input
-                                        class="form-input flex w-full rounded-xl text-[#0d131b] dark:text-white border border-[#cfd8e7] dark:border-[#2d3a4f] dark:bg-[#0d131b] h-12 px-4 text-sm"
-                                        type="date" />
-                                </div>
-                                <div class="md:col-span-2 flex justify-end gap-3 pt-2">
-                                    <button
-                                        class="px-6 py-2.5 rounded-xl border border-[#cfd8e7] dark:border-[#2d3a4f] text-[#4c6a9a] dark:text-gray-300 font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
-                                        type="button">Limpiar</button>
-                                    <button
-                                        class="px-6 py-2.5 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all"
-                                        type="submit">Guardar Factura</button>
-                                </div>
-                            </form>
-                        </div>
-                    </section>
-                    <!-- Section 2: Detalle de Facturas -->
-                    <section
-                        class="bg-white dark:bg-[#1a2433] rounded-xl border border-[#e7ecf3] dark:border-[#2d3a4f] overflow-hidden shadow-sm">
-                        <div
-                            class="border-b border-[#e7ecf3] dark:border-[#2d3a4f] px-6 py-4 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary">table_rows</span>
-                                <h2 class="text-[#0d131b] dark:text-white text-xl font-bold">Listado de Facturas</h2>
-                            </div>
-                            <div class="flex gap-2">
-                                <button
-                                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500">
-                                    <span class="material-symbols-outlined">filter_list</span>
-                                </button>
-                                <button
-                                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-gray-500">
-                                    <span class="material-symbols-outlined">download</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr
-                                        class="bg-gray-50 dark:bg-[#121b28] text-[#4c6a9a] dark:text-gray-400 text-xs font-bold uppercase tracking-wider">
-                                        <th class="px-6 py-4">Fecha</th>
-                                        <th class="px-6 py-4">Cliente</th>
-                                        <th class="px-6 py-4">RUC</th>
-                                        <th class="px-6 py-4">Factura #</th>
-                                        <th class="px-6 py-4 text-right">Monto</th>
-                                        <th class="px-6 py-4">Venc.</th>
-                                        <th class="px-6 py-4">Estado</th>
-                                        <th class="px-6 py-4 text-center">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-100 dark:divide-[#2d3a4f]">
-                                    <!-- Row 1 -->
-                                    <tr class="hover:bg-primary/5 dark:hover:bg-blue-900/10 transition-colors">
-                                        <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">12/10/2023</td>
-                                        <td class="px-6 py-4">
-                                            <p class="text-sm font-bold text-[#0d131b] dark:text-white">Distribuidora
-                                                Alianza</p>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">20601234567</td>
-                                        <td class="px-6 py-4 text-sm font-medium text-primary">F001-000456</td>
-                                        <td
-                                            class="px-6 py-4 text-sm font-bold text-right text-[#0d131b] dark:text-white">
-                                            S/ 4,500.00</td>
-                                        <td class="px-6 py-4 text-sm text-red-500 font-medium">12/11/2023</td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 uppercase">Pendiente</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-center">
-                                            <div class="flex items-center justify-center gap-2">
-                                                <button
-                                                    class="p-1.5 rounded-lg text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                                                    title="Registrar Pago">
-                                                    <span class="material-symbols-outlined text-lg">payments</span>
-                                                </button>
-                                                <button
-                                                    class="p-1.5 rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                                                    title="Anular">
-                                                    <span class="material-symbols-outlined text-lg">cancel</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- Row 2 -->
-                                    <tr class="hover:bg-primary/5 dark:hover:bg-blue-900/10 transition-colors">
-                                        <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">10/10/2023</td>
-                                        <td class="px-6 py-4">
-                                            <p class="text-sm font-bold text-[#0d131b] dark:text-white">Tecnologías del
-                                                Sur</p>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">20459876123</td>
-                                        <td class="px-6 py-4 text-sm font-medium text-primary">F001-000455</td>
-                                        <td
-                                            class="px-6 py-4 text-sm font-bold text-right text-[#0d131b] dark:text-white">
-                                            S/ 1,200.00</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">10/11/2023</td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 uppercase">Pagada</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-center">
-                                            <div class="flex items-center justify-center gap-2">
-                                                <button class="p-1.5 rounded-lg text-gray-400 cursor-not-allowed">
-                                                    <span class="material-symbols-outlined text-lg">payments</span>
-                                                </button>
-                                                <button class="p-1.5 rounded-lg text-gray-400 cursor-not-allowed">
-                                                    <span class="material-symbols-outlined text-lg">cancel</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- Row 3 -->
-                                    <tr class="hover:bg-primary/5 dark:hover:bg-blue-900/10 transition-colors">
-                                        <td class="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">05/10/2023</td>
-                                        <td class="px-6 py-4">
-                                            <p class="text-sm font-bold text-[#0d131b] dark:text-white">Importaciones
-                                                Globales</p>
-                                        </td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">20102030405</td>
-                                        <td class="px-6 py-4 text-sm font-medium text-primary">F001-000454</td>
-                                        <td
-                                            class="px-6 py-4 text-sm font-bold text-right text-[#0d131b] dark:text-white">
-                                            S/ 8,950.00</td>
-                                        <td class="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">05/11/2023</td>
-                                        <td class="px-6 py-4">
-                                            <span
-                                                class="px-3 py-1 rounded-full text-[11px] font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 uppercase">Anulada</span>
-                                        </td>
-                                        <td class="px-6 py-4 text-center">
-                                            <div class="flex items-center justify-center gap-2">
-                                                <button class="p-1.5 rounded-lg text-gray-400 cursor-not-allowed">
-                                                    <span class="material-symbols-outlined text-lg">visibility</span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </section>
-                </div>
-                <!-- Right Column: Seguimiento de Cobranza -->
-                <div class="col-span-12 lg:col-span-4 space-y-8">
-                    <section
-                        class="bg-white dark:bg-[#1a2433] rounded-xl border border-[#e7ecf3] dark:border-[#2d3a4f] overflow-hidden shadow-sm flex flex-col">
-                        <div class="border-b border-[#e7ecf3] dark:border-[#2d3a4f] px-6 py-4 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">history</span>
-                            <h2 class="text-[#0d131b] dark:text-white text-xl font-bold">Seguimiento de Cobranza</h2>
-                        </div>
-                        <!-- Mini Form for Tracking -->
-                        <div class="p-6 bg-gray-50 dark:bg-[#121b28] border-b border-[#e7ecf3] dark:border-[#2d3a4f]">
-                            <p class="text-xs font-bold text-[#4c6a9a] uppercase mb-4">Registrar nueva gestión</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="text-xs font-bold text-gray-600 dark:text-gray-400 mb-1 block">Factura
-                                        Seleccionada</label>
-                                    <div
-                                        class="bg-white dark:bg-[#0d131b] border border-[#cfd8e7] dark:border-[#2d3a4f] p-3 rounded-xl">
-                                        <p class="text-sm font-bold text-primary">F001-000456</p>
-                                        <p class="text-[11px] text-gray-500">Distribuidora Alianza S.A.</p>
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="flex flex-col gap-1">
-                                        <label class="text-xs font-bold text-gray-600 dark:text-gray-400">Fecha
-                                            Gestión</label>
-                                        <input
-                                            class="form-input rounded-xl border-[#cfd8e7] dark:border-[#2d3a4f] dark:bg-[#0d131b] h-10 text-sm"
-                                            type="date" />
-                                    </div>
-                                    <div class="flex flex-col gap-1">
-                                        <label class="text-xs font-bold text-gray-600 dark:text-gray-400">Medio</label>
-                                        <select
-                                            class="form-select rounded-xl border-[#cfd8e7] dark:border-[#2d3a4f] dark:bg-[#0d131b] h-10 text-sm">
-                                            <option>WhatsApp</option>
-                                            <option>Llamada</option>
-                                            <option>Email</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="text-xs font-bold text-gray-600 dark:text-gray-400">Comentario</label>
-                                    <textarea
-                                        class="form-textarea rounded-xl border-[#cfd8e7] dark:border-[#2d3a4f] dark:bg-[#0d131b] text-sm"
-                                        placeholder="Detalle de la comunicación..." rows="3"></textarea>
-                                </div>
-                                <button
-                                    class="w-full py-2.5 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all text-sm">
-                                    Registrar Contacto
-                                </button>
-                            </div>
-                        </div>
-                        <!-- Timeline -->
-                        <div class="p-6 h-[400px] overflow-y-auto custom-scrollbar">
-                            <h3 class="text-xs font-bold text-[#4c6a9a] uppercase mb-6 tracking-wide">Historial Reciente
-                            </h3>
-                            <div class="relative border-l-2 border-primary/20 ml-3 space-y-8">
-                                <!-- Step 1 -->
-                                <div class="relative pl-8">
-                                    <div
-                                        class="absolute -left-[11px] top-0 size-5 rounded-full bg-primary flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-[12px] text-white">call</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase">Ayer, 15:30</span>
-                                        <p class="text-sm font-bold text-[#0d131b] dark:text-white mt-0.5">Llamada
-                                            telefónica</p>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
-                                            Se contactó con tesorería. Indican que el pago saldrá el próximo viernes.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Step 2 -->
-                                <div class="relative pl-8">
-                                    <div
-                                        class="absolute -left-[11px] top-0 size-5 rounded-full bg-emerald-500 flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-[12px] text-white">chat</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase">12 Oct 2023</span>
-                                        <p class="text-sm font-bold text-[#0d131b] dark:text-white mt-0.5">WhatsApp
-                                            Enviado</p>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
-                                            Envío de recordatorio de vencimiento con copia de PDF.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Step 3 -->
-                                <div class="relative pl-8">
-                                    <div
-                                        class="absolute -left-[11px] top-0 size-5 rounded-full bg-blue-400 flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-[12px] text-white">mail</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="text-[10px] font-bold text-gray-400 uppercase">10 Oct 2023</span>
-                                        <p class="text-sm font-bold text-[#0d131b] dark:text-white mt-0.5">Correo
-                                            Electrónico</p>
-                                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
-                                            Notificación automática de nueva factura emitida.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-        </main>
-    </div>
-</body>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Número de Factura</label>
+                    <input
+                      id="invoiceNumberInput"
+                      type="text"
+                      placeholder="Ej: F001-000456"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Monto Total</label>
+                    <input
+                      id="invoiceAmountInput"
+                      type="number"
+                      step="0.01"
+                      placeholder="0.00"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Fecha de Emisión</label>
+                    <input
+                      id="invoiceIssueDateInput"
+                      type="date"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Fecha de Vencimiento</label>
+                    <input
+                      id="invoiceDueDateInput"
+                      type="date"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Estado</label>
+                    <select
+                      id="invoiceStatusSelect"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4 bg-white"
+                    >
+                      <option value="PENDIENTE">Pendiente</option>
+                      <option value="PAGADA">Pagada</option>
+                      <option value="CANCELADA">Cancelada</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Moneda</label>
+                    <select
+                      id="invoiceCurrencySelect"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4 bg-white"
+                    >
+                      <option value="PEN">S/ (PEN)</option>
+                      <option value="USD">$ (USD)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                  <button
+                    id="invoiceClearBtn"
+                    type="button"
+                    class="w-full sm:w-auto h-12 px-6 rounded-xl font-bold border border-slate-200 bg-white hover:bg-slate-50 transition"
+                  >
+                    Limpiar
+                  </button>
+
+                  <button
+                    id="invoiceSaveBtn"
+                    type="submit"
+                    class="w-full sm:w-auto h-12 px-6 rounded-xl bg-primary text-white font-bold flex items-center justify-center gap-2 hover:opacity-90 transition"
+                  >
+                    <span class="material-symbols-outlined">save</span>
+                    Guardar Factura
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Seguimiento de Cobranza -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-6">
+              <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">support_agent</span>
+                Seguimiento de Cobranza
+              </h2>
+
+              <div class="space-y-3">
+                <p class="text-sm font-bold text-slate-700">Factura seleccionada</p>
+
+                <div id="selectedInvoiceCard" class="rounded-xl border border-slate-200 p-4 bg-slate-50">
+                  <p class="text-sm font-bold text-slate-900">Ninguna factura seleccionada</p>
+                  <p class="text-xs text-slate-500">
+                    Selecciona una factura del listado para registrar una gestión.
+                  </p>
+                </div>
+              </div>
+
+              <form id="followupForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Fecha de gestión</label>
+                    <input
+                      id="followupDateInput"
+                      type="date"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="text-sm font-bold text-slate-700">Medio</label>
+                    <select
+                      id="followupChannelSelect"
+                      class="mt-1 w-full h-11 rounded-xl border border-slate-200 px-4 bg-white"
+                    >
+                      <option value="">Seleccionar...</option>
+                      <option value="LLAMADA">Llamada</option>
+                      <option value="WHATSAPP">WhatsApp</option>
+                      <option value="EMAIL">Correo</option>
+                      <option value="VISITA">Visita</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="text-sm font-bold text-slate-700">Comentario</label>
+                  <textarea
+                    id="followupCommentInput"
+                    rows="4"
+                    placeholder="Detalle de la comunicación..."
+                    class="mt-1 w-full rounded-xl border border-slate-200 px-4 py-3"
+                  ></textarea>
+                </div>
+
+                <button
+                  id="followupSaveBtn"
+                  type="submit"
+                  class="w-full h-12 rounded-xl bg-primary text-white font-bold flex items-center justify-center gap-2 hover:opacity-90 transition"
+                >
+                  <span class="material-symbols-outlined">add</span>
+                  Registrar Contacto
+                </button>
+              </form>
+
+              <div class="pt-2 border-t border-slate-100 space-y-3">
+                <p class="text-sm font-extrabold text-slate-900">Historial reciente</p>
+                <div id="followupHistory" class="space-y-3 max-h-64 overflow-auto pr-1">
+                  <p class="text-sm text-slate-500">Sin gestiones registradas.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Listado de Facturas -->
+          <section class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <h2 class="text-lg font-extrabold text-slate-900 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">table_view</span>
+                Listado de Facturas
+              </h2>
+
+              <input
+                id="invoiceSearchInput"
+                type="text"
+                placeholder="Buscar por cliente o número..."
+                class="h-10 w-full md:w-64 rounded-xl border border-slate-200 px-4 text-sm"
+              />
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead class="border-b border-slate-100 text-slate-500">
+                  <tr>
+                    <th class="py-3 text-left">Emisión</th>
+                    <th class="py-3 text-left">Cliente</th>
+                    <th class="py-3 text-left">RUC</th>
+                    <th class="py-3 text-left">Factura</th>
+                    <th class="py-3 text-right">Monto</th>
+                    <th class="py-3 text-left">Venc.</th>
+                    <th class="py-3 text-left">Estado</th>
+                    <th class="py-3 text-center">Acciones</th>
+                  </tr>
+                </thead>
+
+                <tbody id="invoicesTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <span id="invoiceCountSpan" class="text-xs text-slate-500">
+                Mostrando 0 facturas
+              </span>
+
+              <div id="invoicePagination" class="flex gap-2"></div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- JS -->
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/facturas.js"></script>
+  </body>
 </html>
