@@ -21,7 +21,6 @@ El proyecto se desarrolla **sin backend ni base de datos real**, utilizando úni
 
 - HTML5
 - HTML Semántico (`header`, `main`, `section`, `nav`, `footer`)
-- CSS
 - Tailwind CSS
 - JavaScript (Vanilla JS)
 - Manipulación del DOM
