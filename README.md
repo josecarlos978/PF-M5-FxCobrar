@@ -33,6 +33,7 @@ El proyecto se desarrolla **sin backend ni base de datos real**, utilizando úni
 
 ## 📁 Estructura del Proyecto
 
+``` text
 facturas-por-cobrar/
 │
 ├── index.html ← Página principal / inicio
@@ -54,7 +55,7 @@ facturas-por-cobrar/
 │ └── logo.png
 │
 └── README.md
-
+```
 
 ---
 
