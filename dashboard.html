@@ -163,10 +163,10 @@
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Clientes</p>
                         <span class="material-symbols-outlined text-slate-400">groups</span>
                     </div>
-                    <p class="text-3xl font-bold leading-tight">124</p>
+                    <p class="text-3xl font-bold leading-tight" data-metric="total-clientes">0</p>
                     <div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
                         <span class="material-symbols-outlined text-xs">trending_up</span>
-                        <span>+5% este mes</span>
+                        <span>Registro en vivo</span>
                     </div>
                 </div>
                 <div
@@ -175,10 +175,10 @@
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Facturas Totales</p>
                         <span class="material-symbols-outlined text-slate-400">description</span>
                     </div>
-                    <p class="text-3xl font-bold leading-tight">850</p>
-                    <div class="flex items-center gap-1 text-red-600 text-sm font-bold">
-                        <span class="material-symbols-outlined text-xs">trending_down</span>
-                        <span>-2% este mes</span>
+                    <p class="text-3xl font-bold leading-tight" data-metric="total-facturas">0</p>
+                    <div class="flex items-center gap-1 text-slate-600 text-sm font-bold">
+                        <span class="material-symbols-outlined text-xs">update</span>
+                        <span>Actualizado en vivo</span>
                     </div>
                 </div>
                 <div
@@ -187,7 +187,7 @@
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Monto Pendiente</p>
                         <span class="material-symbols-outlined text-red-500">pending_actions</span>
                     </div>
-                    <p class="text-3xl font-bold leading-tight">$15,200.00</p>
+                    <p class="text-3xl font-bold leading-tight" data-metric="monto-pendiente">S/ 0.00</p>
                     <p class="text-slate-400 text-xs font-medium uppercase tracking-tighter">Por cobrar</p>
                 </div>
                 <div
@@ -196,10 +196,10 @@
                         <p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Monto Cobrado</p>
                         <span class="material-symbols-outlined text-green-500">check_circle</span>
                     </div>
-                    <p class="text-3xl font-bold leading-tight">$42,800.00</p>
+                    <p class="text-3xl font-bold leading-tight" data-metric="monto-cobrado">S/ 0.00</p>
                     <div class="flex items-center gap-1 text-[#07883b] text-sm font-bold">
                         <span class="material-symbols-outlined text-xs">trending_up</span>
-                        <span>+8% vs mes anterior</span>
+                        <span>Cobranzas exitosas</span>
                     </div>
                 </div>
             </section>
@@ -393,5 +393,6 @@
         </main>
     </div>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
 </body>
 </html>
