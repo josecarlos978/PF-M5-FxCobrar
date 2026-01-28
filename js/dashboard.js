@@ -138,13 +138,153 @@ function updateDashboard() {
     // Actualizar alertas de vencimiento (HU008)
     updateAlertsSection();
 
-    console.log('Dashboard actualizado');
+    // Actualizar gráficos (HU009)
+    updateCharts();
 }
 
 /**
- * Actualiza la sección de alertas (HU008)
+ * Calcula estadísticas para los gráficos (HU009)
  */
-function updateAlertsSection() {
+function getChartData() {
+    const invoices = getAllInvoices();
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Contar facturas por estado
+    const statusCounts = {
+        pagadas: 0,
+        pendientes: 0,
+        vencidas: 0,
+        canceladas: 0
+    };
+
+    invoices.forEach(inv => {
+        if (inv.status === "PAGADA") {
+            statusCounts.pagadas++;
+        } else if (inv.status === "CANCELADA") {
+            statusCounts.canceladas++;
+        } else if (inv.status === "PENDIENTE") {
+            const dueDate = new Date(inv.dueDate);
+            dueDate.setHours(0, 0, 0, 0);
+            if (dueDate < today) {
+                statusCounts.vencidas++;
+            } else {
+                statusCounts.pendientes++;
+            }
+        }
+    });
+
+    // Calcular recaudación mensual (últimos 4 meses)
+    const monthlyReceipts = {};
+    const currentDate = new Date();
+    
+    // Inicializar últimos 4 meses
+    for (let i = 3; i >= 0; i--) {
+        const date = new Date(currentDate);
+        date.setMonth(date.getMonth() - i);
+        const key = date.toLocaleString('es-PE', { month: 'short' }).toUpperCase();
+        monthlyReceipts[key] = 0;
+    }
+
+    // Sumar recaudación por mes
+    invoices.forEach(inv => {
+        if (inv.status === "PAGADA" || inv.status === "CANCELADA") {
+            const invoiceDate = new Date(inv.issueDate);
+            const key = invoiceDate.toLocaleString('es-PE', { month: 'short' }).toUpperCase();
+            if (monthlyReceipts.hasOwnProperty(key)) {
+                monthlyReceipts[key] += parseFloat(inv.amount) || 0;
+            }
+        }
+    });
+
+    return {
+        statusCounts,
+        monthlyReceipts,
+        months: Object.keys(monthlyReceipts)
+    };
+}
+
+/**
+ * Actualiza los gráficos dinámicamente (HU009)
+ */
+function updateCharts() {
+    const chartData = getChartData();
+    const { statusCounts, monthlyReceipts, months } = chartData;
+
+    // Actualizar gráfico de barras - Estado de Facturas
+    const total = statusCounts.pagadas + statusCounts.pendientes + statusCounts.vencidas + statusCounts.canceladas;
+    
+    if (total > 0) {
+        // Calcular porcentajes
+        const pagadasPct = (statusCounts.pagadas / total) * 100;
+        const pendientesPct = (statusCounts.pendientes / total) * 100;
+        const vencidasPct = (statusCounts.vencidas / total) * 100;
+        const canceladasPct = (statusCounts.canceladas / total) * 100;
+
+        // Actualizar barras
+        const baraPagadas = document.querySelector('[data-chart="bar-pagadas"]');
+        const baraPendientes = document.querySelector('[data-chart="bar-pendientes"]');
+        const baraVencidas = document.querySelector('[data-chart="bar-vencidas"]');
+        const baraCanceladas = document.querySelector('[data-chart="bar-canceladas"]');
+
+        if (baraPagadas) baraPagadas.style.height = (pagadasPct > 5 ? pagadasPct : 5) + '%';
+        if (baraPendientes) baraPendientes.style.height = (pendientesPct > 5 ? pendientesPct : 5) + '%';
+        if (baraVencidas) baraVencidas.style.height = (vencidasPct > 5 ? vencidasPct : 5) + '%';
+        if (baraCanceladas) baraCanceladas.style.height = (canceladasPct > 5 ? canceladasPct : 5) + '%';
+
+        // Actualizar etiquetas de cantidad
+        const labelPagadas = document.querySelector('[data-chart-label="pagadas"]');
+        const labelPendientes = document.querySelector('[data-chart-label="pendientes"]');
+        const labelVencidas = document.querySelector('[data-chart-label="vencidas"]');
+        const labelCanceladas = document.querySelector('[data-chart-label="canceladas"]');
+
+        if (labelPagadas) labelPagadas.textContent = statusCounts.pagadas;
+        if (labelPendientes) labelPendientes.textContent = statusCounts.pendientes;
+        if (labelVencidas) labelVencidas.textContent = statusCounts.vencidas;
+        if (labelCanceladas) labelCanceladas.textContent = statusCounts.canceladas;
+    }
+
+    // Actualizar gráfico de líneas - Recaudación Mensual
+    const maxRecaudacion = Math.max(...Object.values(monthlyReceipts), 1);
+    const pathData = months.map((month, index) => {
+        const value = monthlyReceipts[month] || 0;
+        const yPos = 80 - (value / maxRecaudacion) * 60; // Normalizar a rango de 20 a 80
+        const xPos = (index / (months.length - 1)) * 100;
+        return { xPos, yPos, value };
+    });
+
+    // Generar path SVG
+    let pathString = '';
+    let circlesString = '';
+    pathData.forEach((point, index) => {
+        if (index === 0) {
+            pathString += `M ${point.xPos} ${point.yPos}`;
+        } else {
+            const prevPoint = pathData[index - 1];
+            pathString += ` Q ${(prevPoint.xPos + point.xPos) / 2} ${prevPoint.yPos}, ${point.xPos} ${point.yPos}`;
+        }
+        circlesString += `<circle cx="${point.xPos}" cy="${point.yPos}" fill="#0d46a0" r="1.5"></circle>`;
+    });
+
+    const lineChart = document.querySelector('[data-chart="line-recaudacion"]');
+    if (lineChart) {
+        lineChart.innerHTML = `
+            <path d="${pathString}" fill="none" stroke="#0d46a0" stroke-width="2"></path>
+            ${circlesString}
+            <line class="text-slate-100 dark:text-slate-700" stroke="currentColor" stroke-dasharray="2" x1="0" x2="100" y1="20" y2="20"></line>
+            <line class="text-slate-100 dark:text-slate-700" stroke="currentColor" stroke-dasharray="2" x1="0" x2="100" y1="40" y2="40"></line>
+            <line class="text-slate-100 dark:text-slate-700" stroke="currentColor" stroke-dasharray="2" x1="0" x2="100" y1="60" y2="60"></line>
+        `;
+    }
+
+    // Actualizar etiquetas de meses
+    const monthsContainer = document.querySelector('[data-chart="months"]');
+    if (monthsContainer) {
+        monthsContainer.innerHTML = months.map(month => `<span>${month}</span>`).join('');
+    }
+
+    console.log('Gráficos actualizados:', chartData);
+}
     const { overdueInvoices, upcomingInvoices } = getOverdueAndUpcomingInvoices();
     const alertsContainer = document.getElementById('alertsContainer');
     
