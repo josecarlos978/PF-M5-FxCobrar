@@ -209,51 +209,8 @@
                     <span class="material-symbols-outlined text-red-600">notifications_active</span>
                     <h2 class="text-xl font-bold leading-tight tracking-tight">Alertas Automáticas</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Overdue Alert -->
-                    <div
-                        class="flex items-stretch justify-between gap-4 rounded-xl bg-red-50 dark:bg-red-950/20 p-5 border border-red-100 dark:border-red-900/30">
-                        <div class="flex flex-col gap-3">
-                            <div>
-                                <span
-                                    class="bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Crítico</span>
-                                <p class="text-slate-900 dark:text-slate-100 text-lg font-bold mt-1">Factura #098 - 5
-                                    días de retraso</p>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm">Cliente: Constructora ABC. Pago
-                                    fuera de plazo.</p>
-                            </div>
-                            <button
-                                class="flex items-center justify-center rounded-lg h-9 px-4 bg-red-600 text-white text-sm font-bold w-fit hover:bg-red-700">
-                                Gestionar Cobro
-                            </button>
-                        </div>
-                        <div
-                            class="hidden sm:block size-16 flex-shrink-0 bg-red-100 dark:bg-red-900/40 rounded-full flex items-center justify-center text-red-600">
-                            <span class="material-symbols-outlined text-3xl">error</span>
-                        </div>
-                    </div>
-                    <!-- Upcoming Alert -->
-                    <div
-                        class="flex items-stretch justify-between gap-4 rounded-xl bg-orange-50 dark:bg-orange-950/20 p-5 border border-orange-100 dark:border-orange-900/30">
-                        <div class="flex flex-col gap-3">
-                            <div>
-                                <span
-                                    class="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Próximo</span>
-                                <p class="text-slate-900 dark:text-slate-100 text-lg font-bold mt-1">Factura #102 -
-                                    Vence mañana</p>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm">Cliente: Inversiones Globales S.A.
-                                </p>
-                            </div>
-                            <button
-                                class="flex items-center justify-center rounded-lg h-9 px-4 bg-orange-500 text-white text-sm font-bold w-fit hover:bg-orange-600">
-                                Enviar Recordatorio
-                            </button>
-                        </div>
-                        <div
-                            class="hidden sm:block size-16 flex-shrink-0 bg-orange-100 dark:bg-orange-900/40 rounded-full flex items-center justify-center text-orange-500">
-                            <span class="material-symbols-outlined text-3xl">warning</span>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="alertsContainer">
+                    <!-- Alertas dinámicas se cargarán aquí -->
                 </div>
             </section>
             <!-- Charts Row -->

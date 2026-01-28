@@ -71,8 +71,9 @@ facturas-por-cobrar/
 | HU005 | Gestión de estado de factura | Actualizar estado (Pagada / Cancelada) | ✅ Completada |
 | HU006 | Seguimiento de cobranza | Registrar contactos de cobranza por factura | ✅ Completada |
 | HU007 | Visualización de indicadores | Dashboard con métricas generales | ✅ Completada |
+| HU008 | Alerta de vencimientos | Facturas próximas a vencer o vencidas | ✅ Completada |
 
-**Avance actual: 7 de 9 historias implementadas (≈ 78%)**
+**Avance actual: 8 de 9 historias implementadas (≈ 89%)**
 
 ---
 
@@ -80,7 +81,6 @@ facturas-por-cobrar/
 
 | Código | Historia | Descripción | Estado |
 |:--|:--|:--|:--|
-| HU008 | Alerta de vencimientos | Facturas próximas a vencer o vencidas | ⏳ Pendiente |
 | HU009 | Reportes gráficos | Gráficos de estado y evolución | ⏳ Pendiente |
 
 ---
@@ -180,14 +180,25 @@ facturas-por-cobrar/
 - Los indicadores se actualizan dinámicamente al cambiar datos en otras secciones
 - Formatos de moneda en soles peruanos (PEN)
 
+#### Alertas de Vencimientos (HU008)
+- **Facturas vencidas**: Muestra facturas pendientes con fecha de vencimiento pasada
+  - Indicador: "Crítico" en rojo
+  - Muestra días de retraso
+  - Botón "Gestionar Cobro"
+- **Facturas próximas a vencer**: Muestra facturas pendientes que vencen en los próximos 3 días
+  - Indicador: "Próximo" en naranja
+  - Muestra días para vencer (hoy, mañana, etc.)
+  - Botón "Enviar Recordatorio"
+- Mensaje "Sin alertas" cuando todas las facturas están al día
+- Actualización dinámica en tiempo real
+
 ### Funcionalidades Pendientes
 - Gráficos de estado y evolución
-- Alertas de facturas próximas a vencer
 - Filtros por rango de fechas
 
 ### Historias Asociadas
 - HU007 ✅ Completada
-- HU008 ⏳ Pendiente
+- HU008 ✅ Completada
 - HU009 ⏳ Pendiente
 
 ---
