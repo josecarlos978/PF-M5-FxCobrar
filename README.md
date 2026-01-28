@@ -227,6 +227,16 @@ Todas las historias han sido implementadas. ✅
 > ⚠️ Importante:  
 > Todas las páginas deben ejecutarse desde el mismo Live Server para que `localStorage` funcione correctamente.
 
+### ✳️ Generar datos de prueba (opcional)
+
+Puedes sembrar datos de prueba directamente desde la consola del navegador para probar el flujo rápidamente. Abre `dashboard.html` (o cualquier página del proyecto) en Live Server y en la consola ejecuta:
+
+```js
+import('/js/dev_seed.js').then(m => m.seedDemoData({ clients: 6, invoices: 30 }));
+```
+
+Esto creará clientes y facturas de ejemplo y las guardará en `localStorage` con las mismas claves que usa la aplicación (`awfacturas_clientes` e `invoices_fx`).
+
 ---
 
 ## 👥 Equipo de Trabajo
