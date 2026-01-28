@@ -175,7 +175,7 @@ Todas las historias han sido implementadas. ✅
 - **Total de clientes**: Cantidad de clientes registrados en el sistema
 - **Total de facturas**: Cantidad total de facturas registradas
 - **Monto pendiente**: Total de facturas sin cobrar
-- **Monto cobrado**: Total de facturas pagadas o canceladas
+- **Monto cobrado**: Total de facturas pagadas
 - Los indicadores se actualizan dinámicamente al cambiar datos en otras secciones
 - Formatos de moneda en soles peruanos (PEN)
 
@@ -223,9 +223,6 @@ Todas las historias han sido implementadas. ✅
 2. Instalar la extensión **Live Server**.
 3. Ejecutar `index.html` con **Open with Live Server**.
 4. Navegar por el sistema usando el menú lateral.
-
-> ⚠️ Importante:  
-> Todas las páginas deben ejecutarse desde el mismo Live Server para que `localStorage` funcione correctamente.
 
 ---
 

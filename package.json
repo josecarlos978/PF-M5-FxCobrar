@@ -1,0 +1,11 @@
+{
+  "name": "awfacturas-test",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test:dashboard": "node test/run_dashboard_test.mjs"
+  },
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  }
+}

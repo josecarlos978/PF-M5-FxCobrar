@@ -41,7 +41,7 @@ function calculateMetrics() {
         const monto = parseFloat(inv.amount) || 0;
         if (inv.status === "PENDIENTE") {
             montoPendiente += monto;
-        } else if (inv.status === "PAGADA" || inv.status === "CANCELADA") {
+        } else if (inv.status === "PAGADA") {
             montoCobrado += monto;
         }
     });
@@ -140,6 +140,9 @@ function updateDashboard() {
 
     // Actualizar gráficos (HU009)
     updateCharts();
+
+    // Actualizar tabla de últimas facturas
+    updateLatestInvoicesTable();
 }
 
 /**
@@ -285,6 +288,56 @@ function updateCharts() {
 
     console.log('Gráficos actualizados:', chartData);
 }
+/**
+ * Actualiza la tabla de últimas facturas en el dashboard
+ */
+function updateLatestInvoicesTable() {
+    const latestInvoicesTableBody = document.getElementById('latestInvoicesTableBody');
+    if (!latestInvoicesTableBody) return;
+
+    // Limpiar tabla existente
+    latestInvoicesTableBody.innerHTML = '';
+
+    const invoices = getAllInvoices();
+
+    // Ordenar facturas por fecha de emisión descendente y tomar las últimas 3
+    const latestInvoices = invoices.sort((a, b) => new Date(b.issueDate) - new Date(a.issueDate)).slice(0, 3);
+
+    if (latestInvoices.length === 0) {
+        latestInvoicesTableBody.innerHTML = `
+            <tr>
+                <td colspan="6" class="text-center py-4 text-slate-500">No hay facturas registradas.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    latestInvoices.forEach(inv => {
+        const row = document.createElement('tr');
+        row.classList.add('hover:bg-slate-50', 'dark:hover:bg-slate-900/30', 'transition-colors');
+
+        const statusClass = inv.status === 'PAGADA' ? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400' :
+                            inv.status === 'PENDIENTE' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400' :
+                            'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400';
+        
+        row.innerHTML = `
+            <td class="px-6 py-4 text-sm font-medium">${inv.invoiceNumber}</td>
+            <td class="px-6 py-4 text-sm">${inv.clientName}</td>
+            <td class="px-6 py-4 text-sm text-slate-500">${new Date(inv.issueDate).toLocaleDateString('es-PE')}</td>
+            <td class="px-6 py-4 text-sm font-bold">${formatCurrency(inv.amount)}</td>
+            <td class="px-6 py-4">
+                <span class="px-2 py-1 rounded-full text-[10px] font-bold ${statusClass}">${inv.status}</span>
+            </td>
+            <td class="px-6 py-4">
+                <button
+                    class="material-symbols-outlined text-slate-400 hover:text-primary">visibility</button>
+            </td>
+        `;
+        latestInvoicesTableBody.appendChild(row);
+    });
+}
+
+function updateAlertsSection() {
     const { overdueInvoices, upcomingInvoices } = getOverdueAndUpcomingInvoices();
     const alertsContainer = document.getElementById('alertsContainer');
     

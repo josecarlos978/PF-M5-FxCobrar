@@ -89,6 +89,42 @@ function initFacturasPage() {
   renderInvoices();
   renderSelectedInvoiceCard();
   renderFollowupHistory([]);
+  // Aplicar filtro temporal enviado desde el dashboard (si existe)
+  try {
+    const raw = localStorage.getItem('awfacturas_dashboard_filter');
+    if (raw) {
+      const obj = JSON.parse(raw);
+      if (obj && obj.status) {
+        const all = getAllInvoices();
+        const today = new Date(); today.setHours(0,0,0,0);
+        let filtered = [];
+
+        if (obj.status === 'VENCIDA') {
+          filtered = all.filter(inv => {
+            const st = inv.status || inv.estado || 'PENDIENTE';
+            if (st !== 'PENDIENTE') return false;
+            const due = new Date(inv.dueDate); due.setHours(0,0,0,0);
+            return due < today;
+          });
+        } else if (obj.status === 'PENDIENTE') {
+          filtered = all.filter(inv => {
+            const st = inv.status || inv.estado || 'PENDIENTE';
+            if (st !== 'PENDIENTE') return false;
+            const due = new Date(inv.dueDate); due.setHours(0,0,0,0);
+            return due >= today;
+          });
+        } else {
+          filtered = all.filter(inv => (inv.status || inv.estado || 'PENDIENTE') === obj.status);
+        }
+
+        state.filteredInvoices = filtered;
+        state.currentPage = 1;
+      }
+      localStorage.removeItem('awfacturas_dashboard_filter');
+    }
+  } catch (e) {
+    // ignore
+  }
 }
 
 /**
@@ -106,6 +142,11 @@ function getAllInvoices() {
 
 function saveAllInvoices(invoices) {
   localStorage.setItem(INVOICES_KEY, JSON.stringify(invoices));
+  try {
+    window.dispatchEvent(new CustomEvent('invoices:changed', { detail: { count: invoices.length } }));
+  } catch (e) {
+    // fallback: ignore if CustomEvent dispatch is not available
+  }
 }
 
 function addInvoice(invoice) {
