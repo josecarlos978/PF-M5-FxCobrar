@@ -26,8 +26,8 @@ function getHeaderHTML() {
   return `
     <div class="fixed top-0 z-50 flex h-16 w-full items-center justify-between bg-primary px-10 text-white shadow">
       <div class="flex items-center gap-3">
-        <div class="size-9 rounded-xl bg-white/15 flex items-center justify-center">
-          <span class="material-symbols-outlined">account_balance_wallet</span>
+        <div class="size-9 flex items-center justify-center">
+          <img src="assets/logo.png" alt="Logo" class="h-8 w-auto">
         </div>
         <h1 class="text-lg font-extrabold tracking-wide">Gestión Pro</h1>
       </div>

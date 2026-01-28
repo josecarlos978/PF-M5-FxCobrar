@@ -49,8 +49,8 @@
     <!-- Top Navigation Bar -->
     <header class="sticky top-0 z-50 flex items-center justify-between bg-primary px-6 py-3 shadow-md text-white">
         <div class="flex items-center gap-4">
-            <div class="size-8 bg-white/20 rounded-lg flex items-center justify-center">
-                <span class="material-symbols-outlined text-white">analytics</span>
+            <div class="size-8 bg-white/20 rounded-lg flex items-center justify-center overflow-hidden">
+                <img src="assets/logo.png" alt="Logo" class="h-8 w-8 object-contain" />
             </div>
             <h2 class="text-xl font-bold leading-tight tracking-tight">Dashboard de Indicadores</h2>
         </div>
@@ -223,24 +223,32 @@
                     </div>
                     <div class="flex items-end justify-around h-48 gap-4 px-4">
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-primary rounded-t-lg transition-all" data-chart="bar-pagadas" style="height: 85%;"></div>
+                            <span class="text-sm font-bold text-slate-900 dark:text-slate-100" data-chart-label="pagadas">0</span>
+                            <div class="w-full bg-primary rounded-t-lg transition-all overflow-hidden h-36 flex items-end" style="min-height:40px;">
+                                <div data-chart="bar-pagadas" class="w-full bg-gradient-to-t from-primary to-[#0d6fb0]" style="height:85%;"></div>
+                            </div>
                             <span class="text-xs font-medium text-slate-500">Pagadas</span>
-                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="pagadas">0</span>
                         </div>
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-orange-400 rounded-t-lg transition-all" data-chart="bar-pendientes" style="height: 45%;"></div>
+                            <span class="text-sm font-bold text-slate-900 dark:text-slate-100" data-chart-label="pendientes">0</span>
+                            <div class="w-full bg-orange-100 rounded-t-lg transition-all overflow-hidden h-36 flex items-end" style="min-height:40px;">
+                                <div data-chart="bar-pendientes" class="w-full bg-gradient-to-t from-orange-400 to-orange-300" style="height:45%;"></div>
+                            </div>
                             <span class="text-xs font-medium text-slate-500">Pend.</span>
-                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="pendientes">0</span>
                         </div>
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-red-400 rounded-t-lg transition-all" data-chart="bar-vencidas" style="height: 15%;"></div>
+                            <span class="text-sm font-bold text-slate-900 dark:text-slate-100" data-chart-label="vencidas">0</span>
+                            <div class="w-full bg-red-100 rounded-t-lg transition-all overflow-hidden h-36 flex items-end" style="min-height:40px;">
+                                <div data-chart="bar-vencidas" class="w-full bg-gradient-to-t from-red-400 to-red-300" style="height:15%;"></div>
+                            </div>
                             <span class="text-xs font-medium text-slate-500">Venc.</span>
-                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="vencidas">0</span>
                         </div>
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-slate-300 dark:bg-slate-600 rounded-t-lg transition-all" data-chart="bar-canceladas" style="height: 10%;"></div>
+                            <span class="text-sm font-bold text-slate-900 dark:text-slate-100" data-chart-label="canceladas">0</span>
+                            <div class="w-full bg-slate-100 dark:bg-slate-700 rounded-t-lg transition-all overflow-hidden h-36 flex items-end" style="min-height:40px;">
+                                <div data-chart="bar-canceladas" class="w-full bg-gradient-to-t from-slate-300 to-slate-200 dark:from-slate-600 dark:to-slate-500" style="height:10%;"></div>
+                            </div>
                             <span class="text-xs font-medium text-slate-500">Anul.</span>
-                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="canceladas">0</span>
                         </div>
                     </div>
                 </div>
