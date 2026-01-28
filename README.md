@@ -72,16 +72,15 @@ facturas-por-cobrar/
 | HU006 | Seguimiento de cobranza | Registrar contactos de cobranza por factura | ✅ Completada |
 | HU007 | Visualización de indicadores | Dashboard con métricas generales | ✅ Completada |
 | HU008 | Alerta de vencimientos | Facturas próximas a vencer o vencidas | ✅ Completada |
+| HU009 | Reportes gráficos | Gráficos de estado y evolución | ✅ Completada |
 
-**Avance actual: 8 de 9 historias implementadas (≈ 89%)**
+**Avance actual: 9 de 9 historias implementadas (100%)**
 
 ---
 
 ### ⏳ Historias Pendientes
 
-| Código | Historia | Descripción | Estado |
-|:--|:--|:--|:--|
-| HU009 | Reportes gráficos | Gráficos de estado y evolución | ⏳ Pendiente |
+Todas las historias han sido implementadas. ✅
 
 ---
 
@@ -192,14 +191,18 @@ facturas-por-cobrar/
 - Mensaje "Sin alertas" cuando todas las facturas están al día
 - Actualización dinámica en tiempo real
 
-### Funcionalidades Pendientes
-- Gráficos de estado y evolución
-- Filtros por rango de fechas
-
-### Historias Asociadas
-- HU007 ✅ Completada
-- HU008 ✅ Completada
-- HU009 ⏳ Pendiente
+#### Reportes Gráficos (HU009)
+- **Gráfico de Barras - Estado de Facturas**:
+  - Muestra cantidad de facturas por estado: Pagadas, Pendientes, Vencidas, Anuladas
+  - Barras proporcionales a la cantidad de facturas
+  - Etiquetas con cantidad exacta
+  - Actualización dinámica
+- **Gráfico de Líneas - Recaudación Mensual**:
+  - Muestra recaudación (facturas pagadas/canceladas) de los últimos 4 meses
+  - Puntos marcados en la línea para cada mes
+  - Escalado automático según valores
+  - Etiquetas de meses dinámicas
+- Ambos gráficos se actualizan automáticamente al cambiar datos
 
 ---
 

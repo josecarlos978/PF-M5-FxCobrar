@@ -224,20 +224,24 @@
                     </div>
                     <div class="flex items-end justify-around h-48 gap-4 px-4">
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-primary rounded-t-lg" style="height: 85%;"></div>
+                            <div class="w-full bg-primary rounded-t-lg transition-all" data-chart="bar-pagadas" style="height: 85%;"></div>
                             <span class="text-xs font-medium text-slate-500">Pagadas</span>
+                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="pagadas">0</span>
                         </div>
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-orange-400 rounded-t-lg" style="height: 45%;"></div>
+                            <div class="w-full bg-orange-400 rounded-t-lg transition-all" data-chart="bar-pendientes" style="height: 45%;"></div>
                             <span class="text-xs font-medium text-slate-500">Pend.</span>
+                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="pendientes">0</span>
                         </div>
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-red-400 rounded-t-lg" style="height: 15%;"></div>
+                            <div class="w-full bg-red-400 rounded-t-lg transition-all" data-chart="bar-vencidas" style="height: 15%;"></div>
                             <span class="text-xs font-medium text-slate-500">Venc.</span>
+                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="vencidas">0</span>
                         </div>
                         <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-                            <div class="w-full bg-slate-300 dark:bg-slate-600 rounded-t-lg" style="height: 10%;"></div>
+                            <div class="w-full bg-slate-300 dark:bg-slate-600 rounded-t-lg transition-all" data-chart="bar-canceladas" style="height: 10%;"></div>
                             <span class="text-xs font-medium text-slate-500">Anul.</span>
+                            <span class="text-xs font-bold text-slate-900 dark:text-slate-100" data-chart-label="canceladas">0</span>
                         </div>
                     </div>
                 </div>
@@ -255,7 +259,7 @@
                     </div>
                     <div class="relative h-48 w-full border-b border-l border-slate-100 dark:border-slate-700">
                         <!-- SVG Line Mockup -->
-                        <svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+                        <svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100" data-chart="line-recaudacion">
                             <path d="M 0 80 Q 20 70, 40 40 T 80 20 L 100 30" fill="none" stroke="#0d46a0"
                                 stroke-width="2"></path>
                             <circle cx="0" cy="80" fill="#0d46a0" r="1.5"></circle>
@@ -271,7 +275,7 @@
                                 x1="0" x2="100" y1="60" y2="60"></line>
                         </svg>
                         <div
-                            class="absolute -bottom-6 flex justify-between w-full px-1 text-[10px] text-slate-400 font-medium">
+                            class="absolute -bottom-6 flex justify-between w-full px-1 text-[10px] text-slate-400 font-medium" data-chart="months">
                             <span>Oct</span>
                             <span>Nov</span>
                             <span>Dic</span>
