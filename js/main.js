@@ -29,7 +29,7 @@ function getHeaderHTML() {
         <div class="size-9 rounded-xl bg-white/15 flex items-center justify-center">
           <span class="material-symbols-outlined">account_balance_wallet</span>
         </div>
-        <h1 class="text-lg font-extrabold tracking-wide">Gestión de Cuentas</h1>
+        <h1 class="text-lg font-extrabold tracking-wide">Gestión Pro</h1>
       </div>
 
       <div class="flex items-center gap-4">

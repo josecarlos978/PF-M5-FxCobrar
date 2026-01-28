@@ -41,7 +41,7 @@ function calculateMetrics() {
         const monto = parseFloat(inv.amount) || 0;
         if (inv.status === "PENDIENTE") {
             montoPendiente += monto;
-        } else if (inv.status === "PAGADA" || inv.status === "CANCELADA") {
+        } else if (inv.status === "PAGADA") {
             montoCobrado += monto;
         }
     });
@@ -285,6 +285,7 @@ function updateCharts() {
 
     console.log('Gráficos actualizados:', chartData);
 }
+function updateAlertsSection() {
     const { overdueInvoices, upcomingInvoices } = getOverdueAndUpcomingInvoices();
     const alertsContainer = document.getElementById('alertsContainer');
     
