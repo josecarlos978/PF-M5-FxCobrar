@@ -70,8 +70,9 @@ facturas-por-cobrar/
 | HU004 | Registro de factura por cobrar | Registrar nueva factura | ✅ Completada |
 | HU005 | Gestión de estado de factura | Actualizar estado (Pagada / Cancelada) | ✅ Completada |
 | HU006 | Seguimiento de cobranza | Registrar contactos de cobranza por factura | ✅ Completada |
+| HU007 | Visualización de indicadores | Dashboard con métricas generales | ✅ Completada |
 
-**Avance actual: 6 de 9 historias implementadas (≈ 66%)**
+**Avance actual: 7 de 9 historias implementadas (≈ 78%)**
 
 ---
 
@@ -79,7 +80,6 @@ facturas-por-cobrar/
 
 | Código | Historia | Descripción | Estado |
 |:--|:--|:--|:--|
-| HU007 | Visualización de indicadores | Dashboard con métricas generales | ⏳ Pendiente |
 | HU008 | Alerta de vencimientos | Facturas próximas a vencer o vencidas | ⏳ Pendiente |
 | HU009 | Reportes gráficos | Gráficos de estado y evolución | ⏳ Pendiente |
 
@@ -168,26 +168,27 @@ facturas-por-cobrar/
 
 ---
 
-## 📊 dashboard.html – Panel de Control (Pendiente)
+## 📊 dashboard.html – Panel de Control
 
-> ⚠️ Nota:  
-> Las funcionalidades descritas a continuación corresponden a requerimientos definidos.  
-> La implementación del dashboard se encuentra pendiente.
+### Funcionalidades Implementadas
 
-### Funcionalidades Definidas
-- Indicadores generales:
-  - Total de clientes
-  - Total de facturas
-  - Facturas pendientes, pagadas y canceladas
-  - Monto pendiente y cobrado
-- Gráficos de estado y evolución.
-- Alertas de facturas próximas a vencer.
-- Filtros por rango de fechas.
+#### Indicadores Generales (HU007)
+- **Total de clientes**: Cantidad de clientes registrados en el sistema
+- **Total de facturas**: Cantidad total de facturas registradas
+- **Monto pendiente**: Total de facturas sin cobrar
+- **Monto cobrado**: Total de facturas pagadas o canceladas
+- Los indicadores se actualizan dinámicamente al cambiar datos en otras secciones
+- Formatos de moneda en soles peruanos (PEN)
+
+### Funcionalidades Pendientes
+- Gráficos de estado y evolución
+- Alertas de facturas próximas a vencer
+- Filtros por rango de fechas
 
 ### Historias Asociadas
-- HU007
-- HU008
-- HU009
+- HU007 ✅ Completada
+- HU008 ⏳ Pendiente
+- HU009 ⏳ Pendiente
 
 ---
 
